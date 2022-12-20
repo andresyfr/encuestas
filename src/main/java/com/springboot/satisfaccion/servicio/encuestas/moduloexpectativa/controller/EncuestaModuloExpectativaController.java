@@ -20,7 +20,9 @@ import java.util.Map;
 @RequestMapping(value="/api/satisfaccionservicio/encuestas/moduloexpectativa")
 public class EncuestaModuloExpectativaController
 {
+
     private static final String pregunta1Valor = "1. ¿Cómo califica la calidad de la prestación del servicio ofrecido por la entidad, cumplió sus expectativas?";
+
     private static final String pregunta2Valor = "2. ¿Recomendaría la entidad por el servicio prestado?";
     private static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
     @Autowired

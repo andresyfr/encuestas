@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container py-4"></div>
+
+<div class="card bg-dark text-white">
+  <div class="card-header" th:text="${title}"></div>
+  <div class="card-body">
+
+    <div th:object="${encuestaDesempenoProceso}" th:remove="tag">
+      <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+        <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+      </ul>
+    </div>
+
+    <form th:action="@{/api/satisfaccionservicio/encuestas/modulodesempenoproceso/save}" th:object="${encuestaDesempenoProceso}" method="post">
+      <div class="form-group row">
+        <label class="col-sm-5 col-form-label">Número de identificación del ciudadano</label>
+        <div class="col-sm-2">
+          <input type="number" required min="1" th:field="*{idCiudadano}" class="form-control"
+                 th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
+                                                                       th:if="${#fields.hasErrors('idCiudadano')}" th:errors="*{idCiudadano}"></small>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-5 col-form-label" th:text="${pregunta1Valor}"></label>
+        <div class="col-sm-2">
+          <br>
+          <form_star>
+            <ps class="clasificacion">
+              <input id="radio1" type="radio" th:field="*{respuesta1}" name="estrellas" value="4" ><!--
+      --><label for="radio1">★</label><!--
+      --><input id="radio2" type="radio" th:field="*{respuesta1}" name="estrellas" value="3"><!--
+      --><label for="radio2">★</label><!--
+      --><input id="radio3" type="radio" th:field="*{respuesta1}" name="estrellas" value="2"><!--
+      --><label for="radio3">★</label><!--
+      --><input id="radio4" type="radio" th:field="*{respuesta1}" name="estrellas" value="1"><!--
+      --><label for="radio4">★</label>
+              <small class="form-text text-danger"
+                     th:if="${#fields.hasErrors('respuesta1')}" th:errors="*{respuesta1}"></small>
+            </ps>
+          </form_star>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-5 col-form-label" th:text="${pregunta2AValor}"></label>
+        <div class="col-sm-2">
+          <form_star>
+            <ps class="clasificacion">
+              <input id="radio11" type="radio" th:field="*{respuesta2a}" name="estrellas" value="4" ><!--
+      --><label for="radio11">★</label><!--
+      --><input id="radio12" type="radio" th:field="*{respuesta2a}" name="estrellas" value="3"><!--
+      --><label for="radio12">★</label><!--
+      --><input id="radio13" type="radio" th:field="*{respuesta2a}" name="estrellas" value="2"><!--
+      --><label for="radio13">★</label><!--
+      --><input id="radio14" type="radio" th:field="*{respuesta2a}" name="estrellas" value="1"><!--
+      --><label for="radio14">★</label>
+              <small class="form-text text-danger"
+                     th:if="${#fields.hasErrors('respuesta2a')}" th:errors="*{respuesta2a}"></small>
+            </ps>
+          </form_star>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-5 col-form-label" th:text="${pregunta2BValor}"></label>
+        <div class="col-sm-2">
+          <form_star>
+            <ps class="clasificacion">
+              <input id="radio21" type="radio" th:field="*{respuesta2b}" name="estrellas" value="4" ><!--
+      --><label for="radio21">★</label><!--
+      --><input id="radio22" type="radio" th:field="*{respuesta2b}" name="estrellas" value="3"><!--
+      --><label for="radio22">★</label><!--
+      --><input id="radio23" type="radio" th:field="*{respuesta2b}" name="estrellas" value="2"><!--
+      --><label for="radio23">★</label><!--
+      --><input id="radio24" type="radio" th:field="*{respuesta2b}" name="estrellas" value="1"><!--
+      --><label for="radio24">★</label>
+              <small class="form-text text-danger"
+                     th:if="${#fields.hasErrors('respuesta2b')}" th:errors="*{respuesta2b}"></small>
+            </ps>
+          </form_star>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <input type="submit" value="Enviar respuestas" class="btn btn-primary" />
+        </div>
+      </div>
+
+      </form>
+
+  </div>
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+
+</html>

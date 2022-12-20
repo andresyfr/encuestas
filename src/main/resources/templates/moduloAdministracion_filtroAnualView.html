@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container py-4"></div>
+
+<div class="card bg-dark text-white">
+    <div class="card-header" th:text="${title}"></div>
+    <div class="card-body">
+
+    </div>
+</div>
+
+<br>
+<div class="container text-center">
+  <table class="table table-dark">
+    <thead class="table-header">
+    <tr>
+      <th scope="col">Encuesta</th>
+      <th scope="col">Promedio</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="listadoPromedioAnio : ${listadoPromedioAnio}">
+      <td th:text="${listadoPromedioAnio.key}"></td>
+      <td th:text="${listadoPromedioAnio.value}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+
+</html>

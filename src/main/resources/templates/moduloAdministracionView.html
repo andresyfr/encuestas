@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container py-4"></div>
+
+<div class="card bg-dark text-white">
+    <div class="card-header" th:text="${title}"></div>
+    <div class="card-body">
+      <div class="form-group row">
+        <div class="col-sm-6">
+            <a class="btn btn-outline-primary" th:href="@{/api/satisfaccionservicio/encuestas/administracion/filtros/anual/} + ${anio}" th:text="'Promedio Anual'" onclick="return confirm('Se aplicarán los filtros de la información y se promediaran las encuestas, ¿Está de acuerdo?');"></a>
+            <a class="btn btn-outline-primary" th:href="@{/api/satisfaccionservicio/encuestas/administracion/filtros/semestral/} + ${anio}" th:text="'Promedio Semestral'" onclick="return confirm('Se aplicarán los filtros de la información y se promediaran las encuestas, ¿Está de acuerdo?');"></a>
+            <a class="btn btn-outline-primary" th:href="@{/api/satisfaccionservicio/encuestas/administracion/filtros/mensual/} + ${anio}" th:text="'Promedio Mensual'" onclick="return confirm('Se aplicarán los filtros de la información y se promediaran las encuestas, ¿Está de acuerdo?');"></a>
+        </div>
+      </div>
+    </div>
+</div>
+
+<br>
+
+<div class="container text-center">
+  <table class="table table-dark">
+    <thead class="table-header">
+    <tr>
+      <th scope="col">Codigo Ciudadano</th>
+      <th scope="col">Pregunta</th>
+      <th scope="col">Respuesta</th>
+      <th scope="col">Fecha diligenciada</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="encuesta : ${listadoAnio}">
+      <td th:text="${encuesta.idCiudadano}"></td>
+      <td th:text="${encuesta.pregunta}"></td>
+      <td th:text="${encuesta.respuesta}"></td>
+      <td th:text="${encuesta.fechaDiligenciada}"></td>
+
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+
+</html>

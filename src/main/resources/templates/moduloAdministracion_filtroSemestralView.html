@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container py-4"></div>
+
+<div class="card bg-dark text-white">
+    <div class="card-header" th:text="${title}"></div>
+    <div class="card-body">
+
+    </div>
+</div>
+
+<br>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col">
+            <div class="container text-center">
+                <table class="table table-dark">
+                    <thead class="table-header">
+                    <tr>
+                        <th scope="col">Encuesta</th>
+                        <th scope="col">Promedio</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="listadoPromedioPrimerSemestre : ${listadoPromedioPrimerSemestre}">
+                        <td th:text="${listadoPromedioPrimerSemestre.key}"></td>
+                        <td th:text="${listadoPromedioPrimerSemestre.value}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="container text-center">
+                <table class="table table-dark">
+                    <thead class="table-header">
+                    <tr>
+                        <th scope="col">Encuesta</th>
+                        <th scope="col">Promedio</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="listadoPromedioSegundoSemestre : ${listadoPromedioSegundoSemestre}">
+                        <td th:text="${listadoPromedioSegundoSemestre.key}"></td>
+                        <td th:text="${listadoPromedioSegundoSemestre.value}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+
+</html>

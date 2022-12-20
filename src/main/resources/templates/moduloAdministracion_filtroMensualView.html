@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container py-4"></div>
+
+<div class="card bg-dark text-white">
+    <div class="card-header" th:text="${title}"></div>
+    <div class="card-body">
+
+    </div>
+</div>
+
+<br>
+
+<div class="container text-center">
+  <table class="table table-dark">
+    <thead class="table-header">
+    <tr>
+      <th scope="col">Encuesta</th>
+      <th scope="col">Promedio</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="listadoPromedioMesEnero : ${listadoPromedioMesEnero}">
+      <td th:text="${listadoPromedioMesEnero.key}"></td>
+      <td th:text="${listadoPromedioMesEnero.value}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container text-center">
+  <table class="table table-dark">
+    <thead class="table-header">
+    <tr>
+      <th scope="col">Encuesta</th>
+      <th scope="col">Promedio</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="listadoPromedioMesFebrero : ${listadoPromedioMesFebrero}">
+      <td th:text="${listadoPromedioMesFebrero.key}"></td>
+      <td th:text="${listadoPromedioMesFebrero.value}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container text-center">
+  <table class="table table-dark">
+    <thead class="table-header">
+    <tr>
+      <th scope="col">Encuesta</th>
+      <th scope="col">Promedio</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="listadoPromedioMesMarzo : ${listadoPromedioMesMarzo}">
+      <td th:text="${listadoPromedioMesMarzo.key}"></td>
+      <td th:text="${listadoPromedioMesMarzo.value}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container text-center">
+  <table class="table table-dark">
+    <thead class="table-header">
+    <tr>
+      <th scope="col">Encuesta</th>
+      <th scope="col">Promedio</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="listadoPromedioMesAbril : ${listadoPromedioMesAbril}">
+      <td th:text="${listadoPromedioMesAbril.key}"></td>
+      <td th:text="${listadoPromedioMesAbril.value}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container text-center">
+  <table class="table table-dark">
+    <thead class="table-header">
+    <tr>
+      <th scope="col">Encuesta</th>
+      <th scope="col">Promedio</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="listadoPromedioMesMayo : ${listadoPromedioMesMayo}">
+      <td th:text="${listadoPromedioMesMayo.key}"></td>
+      <td th:text="${listadoPromedioMesMayo.value}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container text-center">
+  <table class="table table-dark">
+    <thead class="table-header">
+    <tr>
+      <th scope="col">Encuesta</th>
+      <th scope="col">Promedio</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="listadoPromedioMesJunio : ${listadoPromedioMesJunio}">
+      <td th:text="${listadoPromedioMesJunio.key}"></td>
+      <td th:text="${listadoPromedioMesJunio.value}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container text-center">
+  <table class="table table-dark">
+    <thead class="table-header">
+    <tr>
+      <th scope="col">Encuesta</th>
+      <th scope="col">Promedio</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="listadoPromedioMesJulio : ${listadoPromedioMesJulio}">
+      <td th:text="${listadoPromedioMesJulio.key}"></td>
+      <td th:text="${listadoPromedioMesJulio.value}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container text-center">
+  <table class="table table-dark">
+    <thead class="table-header">
+    <tr>
+      <th scope="col">Encuesta</th>
+      <th scope="col">Promedio</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="listadoPromedioMesAgosto : ${listadoPromedioMesAgosto}">
+      <td th:text="${listadoPromedioMesAgosto.key}"></td>
+      <td th:text="${listadoPromedioMesAgosto.value}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container text-center">
+  <table class="table table-dark">
+    <thead class="table-header">
+    <tr>
+      <th scope="col">Encuesta</th>
+      <th scope="col">Promedio</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="listadoPromedioMesSeptiembre : ${listadoPromedioMesSeptiembre}">
+      <td th:text="${listadoPromedioMesSeptiembre.key}"></td>
+      <td th:text="${listadoPromedioMesSeptiembre.value}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container text-center">
+  <table class="table table-dark">
+    <thead class="table-header">
+    <tr>
+      <th scope="col">Encuesta</th>
+      <th scope="col">Promedio</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="listadoPromedioMesOctubre : ${listadoPromedioMesOctubre}">
+      <td th:text="${listadoPromedioMesOctubre.key}"></td>
+      <td th:text="${listadoPromedioMesOctubre.value}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container text-center">
+  <table class="table table-dark">
+    <thead class="table-header">
+    <tr>
+      <th scope="col">Encuesta</th>
+      <th scope="col">Promedio</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="listadoPromedioMesNoviembre : ${listadoPromedioMesNoviembre}">
+      <td th:text="${listadoPromedioMesNoviembre.key}"></td>
+      <td th:text="${listadoPromedioMesNoviembre.value}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container text-center">
+  <table class="table table-dark">
+    <thead class="table-header">
+    <tr>
+      <th scope="col">Encuesta</th>
+      <th scope="col">Promedio</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="listadoPromedioMesDiciembre : ${listadoPromedioMesDiciembre}">
+      <td th:text="${listadoPromedioMesDiciembre.key}"></td>
+      <td th:text="${listadoPromedioMesDiciembre.value}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+
+</html>
