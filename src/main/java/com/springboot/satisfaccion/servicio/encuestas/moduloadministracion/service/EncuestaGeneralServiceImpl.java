@@ -17,6 +17,12 @@ import java.util.Map;
 @Service
 public class EncuestaGeneralServiceImpl implements EncuestaGeneralService
 {
+
+    private static final String CANAL = "Encuesta de canal atencion";
+    private static final String DESEMPENO = "Encuesta de desempeño";
+    private static final String EXPECTATIVA = "Encuesta de expectativa";
+    private static final String RESULTADO = "Encuesta de resultado";
+    private static final String TALENTO = "Encuesta de talento humano";
     @Override
     public  List<EncuestaGeneral> obtenerEncuestasDentroDeAnio
         (
@@ -37,8 +43,8 @@ public class EncuestaGeneralServiceImpl implements EncuestaGeneralService
             {
                 if (encuestasModuloCanalesAtencion.getFechaDiligenciada().substring(0,4).equals(anio))
                 {
-                    totalRespuestasObj.add(new EncuestaGeneral(encuestasModuloCanalesAtencion.getIdCiudadano(),encuestasModuloCanalesAtencion.getPregunta1(),encuestasModuloCanalesAtencion.getRespuesta1(),encuestasModuloCanalesAtencion.getFechaDiligenciada()));
-                    totalRespuestasObj.add(new EncuestaGeneral(encuestasModuloCanalesAtencion.getIdCiudadano(),encuestasModuloCanalesAtencion.getPregunta2(),encuestasModuloCanalesAtencion.getRespuesta2(),encuestasModuloCanalesAtencion.getFechaDiligenciada()));
+                    totalRespuestasObj.add(new EncuestaGeneral(CANAL, encuestasModuloCanalesAtencion.getIdCiudadano(),encuestasModuloCanalesAtencion.getPregunta1(),encuestasModuloCanalesAtencion.getRespuesta1(),encuestasModuloCanalesAtencion.getFechaDiligenciada()));
+                    totalRespuestasObj.add(new EncuestaGeneral(CANAL, encuestasModuloCanalesAtencion.getIdCiudadano(),encuestasModuloCanalesAtencion.getPregunta2(),encuestasModuloCanalesAtencion.getRespuesta2(),encuestasModuloCanalesAtencion.getFechaDiligenciada()));
                 }
             }
         }
@@ -49,9 +55,9 @@ public class EncuestaGeneralServiceImpl implements EncuestaGeneralService
             {
                 if (encuestasModuloDesempenoProceso.getFechaDiligenciada().substring(0,4).equals(anio))
                 {
-                    totalRespuestasObj.add(new EncuestaGeneral(encuestasModuloDesempenoProceso.getIdCiudadano(),encuestasModuloDesempenoProceso.getPregunta1(),encuestasModuloDesempenoProceso.getRespuesta1(),encuestasModuloDesempenoProceso.getFechaDiligenciada()));
-                    totalRespuestasObj.add(new EncuestaGeneral(encuestasModuloDesempenoProceso.getIdCiudadano(),encuestasModuloDesempenoProceso.getPregunta2a(),encuestasModuloDesempenoProceso.getRespuesta2a(),encuestasModuloDesempenoProceso.getFechaDiligenciada()));
-                    totalRespuestasObj.add(new EncuestaGeneral(encuestasModuloDesempenoProceso.getIdCiudadano(),encuestasModuloDesempenoProceso.getPregunta2b(),encuestasModuloDesempenoProceso.getRespuesta2b(),encuestasModuloDesempenoProceso.getFechaDiligenciada()));
+                    totalRespuestasObj.add(new EncuestaGeneral(DESEMPENO, encuestasModuloDesempenoProceso.getIdCiudadano(),encuestasModuloDesempenoProceso.getPregunta1(),encuestasModuloDesempenoProceso.getRespuesta1(),encuestasModuloDesempenoProceso.getFechaDiligenciada()));
+                    totalRespuestasObj.add(new EncuestaGeneral(DESEMPENO, encuestasModuloDesempenoProceso.getIdCiudadano(),encuestasModuloDesempenoProceso.getPregunta2a(),encuestasModuloDesempenoProceso.getRespuesta2a(),encuestasModuloDesempenoProceso.getFechaDiligenciada()));
+                    totalRespuestasObj.add(new EncuestaGeneral(DESEMPENO, encuestasModuloDesempenoProceso.getIdCiudadano(),encuestasModuloDesempenoProceso.getPregunta2b(),encuestasModuloDesempenoProceso.getRespuesta2b(),encuestasModuloDesempenoProceso.getFechaDiligenciada()));
                 }
             }
         }
@@ -62,8 +68,8 @@ public class EncuestaGeneralServiceImpl implements EncuestaGeneralService
             {
                 if (encuestasModuloExpectativa.getFechaDiligenciada().substring(0,4).equals(anio))
                 {
-                    totalRespuestasObj.add(new EncuestaGeneral(encuestasModuloExpectativa.getIdCiudadano(),encuestasModuloExpectativa.getPregunta1(),encuestasModuloExpectativa.getRespuesta1(),encuestasModuloExpectativa.getFechaDiligenciada()));
-                    totalRespuestasObj.add(new EncuestaGeneral(encuestasModuloExpectativa.getIdCiudadano(),encuestasModuloExpectativa.getPregunta2(),encuestasModuloExpectativa.getRespuesta2(),encuestasModuloExpectativa.getFechaDiligenciada()));
+                    totalRespuestasObj.add(new EncuestaGeneral(EXPECTATIVA, encuestasModuloExpectativa.getIdCiudadano(),encuestasModuloExpectativa.getPregunta1(),encuestasModuloExpectativa.getRespuesta1(),encuestasModuloExpectativa.getFechaDiligenciada()));
+                    totalRespuestasObj.add(new EncuestaGeneral(EXPECTATIVA, encuestasModuloExpectativa.getIdCiudadano(),encuestasModuloExpectativa.getPregunta2(),encuestasModuloExpectativa.getRespuesta2(),encuestasModuloExpectativa.getFechaDiligenciada()));
                 }
             }
         }
@@ -74,8 +80,8 @@ public class EncuestaGeneralServiceImpl implements EncuestaGeneralService
             {
                 if (encuestasModuloResultado.getFechaDiligenciada().substring(0,4).equals(anio))
                 {
-                    totalRespuestasObj.add(new EncuestaGeneral(encuestasModuloResultado.getIdCiudadano(),encuestasModuloResultado.getPregunta1(),encuestasModuloResultado.getRespuesta1(),encuestasModuloResultado.getFechaDiligenciada()));
-                    totalRespuestasObj.add(new EncuestaGeneral(encuestasModuloResultado.getIdCiudadano(),encuestasModuloResultado.getPregunta2(),encuestasModuloResultado.getRespuesta2(),encuestasModuloResultado.getFechaDiligenciada()));
+                    totalRespuestasObj.add(new EncuestaGeneral(RESULTADO, encuestasModuloResultado.getIdCiudadano(),encuestasModuloResultado.getPregunta1(),encuestasModuloResultado.getRespuesta1(),encuestasModuloResultado.getFechaDiligenciada()));
+                    totalRespuestasObj.add(new EncuestaGeneral(RESULTADO, encuestasModuloResultado.getIdCiudadano(),encuestasModuloResultado.getPregunta2(),encuestasModuloResultado.getRespuesta2(),encuestasModuloResultado.getFechaDiligenciada()));
                 }
             }
         }
@@ -86,9 +92,9 @@ public class EncuestaGeneralServiceImpl implements EncuestaGeneralService
             {
                 if (encuestasModuloTalentoHumano.getFechaDiligenciada().substring(0,4).equals(anio))
                 {
-                    totalRespuestasObj.add(new EncuestaGeneral(encuestasModuloTalentoHumano.getIdCiudadano(),encuestasModuloTalentoHumano.getPregunta1a(),encuestasModuloTalentoHumano.getRespuesta1a(),encuestasModuloTalentoHumano.getFechaDiligenciada()));
-                    totalRespuestasObj.add(new EncuestaGeneral(encuestasModuloTalentoHumano.getIdCiudadano(),encuestasModuloTalentoHumano.getPregunta1b(),encuestasModuloTalentoHumano.getRespuesta1b(),encuestasModuloTalentoHumano.getFechaDiligenciada()));
-                    totalRespuestasObj.add(new EncuestaGeneral(encuestasModuloTalentoHumano.getIdCiudadano(),encuestasModuloTalentoHumano.getPregunta1c(),encuestasModuloTalentoHumano.getRespuesta1c(),encuestasModuloTalentoHumano.getFechaDiligenciada()));
+                    totalRespuestasObj.add(new EncuestaGeneral(TALENTO, encuestasModuloTalentoHumano.getIdCiudadano(),encuestasModuloTalentoHumano.getPregunta1a(),encuestasModuloTalentoHumano.getRespuesta1a(),encuestasModuloTalentoHumano.getFechaDiligenciada()));
+                    totalRespuestasObj.add(new EncuestaGeneral(TALENTO, encuestasModuloTalentoHumano.getIdCiudadano(),encuestasModuloTalentoHumano.getPregunta1b(),encuestasModuloTalentoHumano.getRespuesta1b(),encuestasModuloTalentoHumano.getFechaDiligenciada()));
+                    totalRespuestasObj.add(new EncuestaGeneral(TALENTO, encuestasModuloTalentoHumano.getIdCiudadano(),encuestasModuloTalentoHumano.getPregunta1c(),encuestasModuloTalentoHumano.getRespuesta1c(),encuestasModuloTalentoHumano.getFechaDiligenciada()));
                 }
             }
         }
