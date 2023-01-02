@@ -24,7 +24,7 @@ public class EncuestaModuloExpectativaController
     private static final String pregunta1Valor = "1. ¿Cómo califica la calidad de la prestación del servicio ofrecido por la entidad, cumplió sus expectativas?";
 
     private static final String pregunta2Valor = "2. ¿Recomendaría la entidad por el servicio prestado?";
-    private static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+    private static final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
     @Autowired
     private EncuestaModuloExpectativaService encuestaModuloExpectativaService;
 
@@ -39,8 +39,21 @@ public class EncuestaModuloExpectativaController
         return "moduloExpectativaView";
     }
 
-    @PostMapping(value = "/save")
-    public String save(@Valid EncuestaModuloExpectativa encuestaModuloExpectativa, BindingResult result, Model model, RedirectAttributes flash)
+    @GetMapping(value = "/index/{cedula}")
+    public String indexModuloExpectativa(@RequestParam String cedula, Map<String, Object> model)
+    {
+        EncuestaModuloExpectativa encuestaModuloExpectativa = new EncuestaModuloExpectativa();
+        model.put("title", "Módulo expectativa");
+        model.put("encuestaExpectativa", encuestaModuloExpectativa);
+        model.put("pregunta1Valor", pregunta1Valor);
+        model.put("pregunta2Valor", pregunta2Valor);
+        model.put("cedula", cedula);
+
+        return "moduloExpectativaView";
+    }
+
+    @PostMapping(value = "/save/{cedula}")
+    public String save(@Valid EncuestaModuloExpectativa encuestaModuloExpectativa, BindingResult result, Model model, RedirectAttributes flash, @PathVariable String cedula)
     {
         if(result.hasErrors())
         {
@@ -52,10 +65,15 @@ public class EncuestaModuloExpectativaController
         encuestaModuloExpectativa.setPregunta1(pregunta1Valor);
         encuestaModuloExpectativa.setPregunta2(pregunta2Valor);
         encuestaModuloExpectativa.setFechaDiligenciada(dateFormat.format(new Date()));
+        if(!(cedula.isEmpty() || cedula.equals("null"))){encuestaModuloExpectativa.setIdCiudadano(Long.parseLong(cedula));}
         encuestaModuloExpectativaService.save(encuestaModuloExpectativa);
         flash.addFlashAttribute("success",flashMessage);
 
-        return "redirect:/api/satisfaccionservicio/encuestas/moduloexpectativa/index";
+        if(cedula.isEmpty() || cedula.equals("null"))
+        {
+            return "redirect:/api/satisfaccionservicio/encuestas/moduloexpectativa/index";
+        }
+        return "redirect:/api/satisfaccionservicio/encuestas/modulocanalesatencion/index/"+cedula;
     }
 
     @GetMapping(value = "/all")

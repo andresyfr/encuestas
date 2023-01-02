@@ -67,6 +67,15 @@ public class AdministracionController
         return encuestaModuloTalentoHumanoService.getAll();
     }
 
+
+    @GetMapping(value = "/home")
+    public String home(Model model)
+    {
+        model.addAttribute("title", "Bienvenido al módulo general de encuestas");
+
+        return "moduloAdministracionHome";
+    }
+
     @GetMapping(value = "/index")
     public String index(Model model)
     {
