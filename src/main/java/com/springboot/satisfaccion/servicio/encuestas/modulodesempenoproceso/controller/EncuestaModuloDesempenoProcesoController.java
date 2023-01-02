@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -27,7 +25,7 @@ public class EncuestaModuloDesempenoProcesoController {
             "A. Rapidez y sencillez en la atención y en el acceso a los servicios";
     private static final String pregunta2BValor = "2. ¿Cómo califica los siguientes aspectos de la entidad? \n" +
             "B. Respeto por el turno de atención y por el cumplimiento de los horarios de atención.";
-    private static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+    private static final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 
     @Autowired
     private EncuestaModuloDesempenoProcesoService encuestaModuloDesempenoProcesoService;
@@ -44,8 +42,22 @@ public class EncuestaModuloDesempenoProcesoController {
         return "moduloDesempenoProcesoView";
     }
 
-    @PostMapping(value = "/save")
-    public String save(@Valid EncuestaModuloDesempenoProceso encuestaModuloDesempenoProceso, BindingResult result, Model model, RedirectAttributes flash) {
+    @GetMapping(value = "/index/{cedula}")
+    public String indexModuloDesempenoProceso(@PathVariable String cedula, Map<String, Object> model)
+    {
+        EncuestaModuloDesempenoProceso encuestaModuloDesempenoProceso = new EncuestaModuloDesempenoProceso();
+        model.put("title", "Módulo Desempeno Proceso");
+        model.put("encuestaDesempenoProceso", encuestaModuloDesempenoProceso);
+        model.put("pregunta1Valor", pregunta1Valor);
+        model.put("pregunta2AValor", pregunta2AValor);
+        model.put("pregunta2BValor", pregunta2BValor);
+        model.put("cedula", cedula);
+        return "moduloDesempenoProcesoView";
+    }
+
+    @PostMapping(value = "/save/{cedula}")
+    public String save(@Valid EncuestaModuloDesempenoProceso encuestaModuloDesempenoProceso, BindingResult result, Model model, RedirectAttributes flash, @PathVariable String cedula)
+    {
         if (result.hasErrors()) {
             model.addAttribute("title", "Modulo encuesta Desempeño Proceso");
             return "moduloDesempenoProcesoView";
@@ -56,10 +68,15 @@ public class EncuestaModuloDesempenoProcesoController {
         encuestaModuloDesempenoProceso.setPregunta2a(pregunta2AValor);
         encuestaModuloDesempenoProceso.setPregunta2b(pregunta2BValor);
         encuestaModuloDesempenoProceso.setFechaDiligenciada(dateFormat.format(new Date()));
+        if(!(cedula.isEmpty() || cedula.equals("null"))){encuestaModuloDesempenoProceso.setIdCiudadano(Long.parseLong(cedula));}
         encuestaModuloDesempenoProcesoService.save(encuestaModuloDesempenoProceso);
         flash.addFlashAttribute("success",flashMessage);
 
-        return "redirect:/api/satisfaccionservicio/encuestas/modulodesempenoproceso/index";
+        if(cedula.isEmpty() || cedula.equals("null"))
+        {
+            return "redirect:/api/satisfaccionservicio/encuestas/modulodesempenoproceso/index";
+        }
+        return "redirect:/api/satisfaccionservicio/encuestas/moduloresultado/index/"+cedula;
 
     }
 

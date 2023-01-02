@@ -19,13 +19,21 @@
       </ul>
     </div>
 
-    <form th:action="@{/api/satisfaccionservicio/encuestas/modulodesempenoproceso/save}" th:object="${encuestaDesempenoProceso}" method="post">
+    <form th:action="@{/api/satisfaccionservicio/encuestas/modulodesempenoproceso/save/} + ${cedula}" th:object="${encuestaDesempenoProceso}" method="post">
       <div class="form-group row">
         <label class="col-sm-5 col-form-label">Número de identificación del ciudadano</label>
         <div class="col-sm-2">
-          <input type="number" required min="1" th:field="*{idCiudadano}" class="form-control"
-                 th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
-                                                                       th:if="${#fields.hasErrors('idCiudadano')}" th:errors="*{idCiudadano}"></small>
+
+          <div th:if="${cedula} != null ">
+            <input  th:value="${cedula}" type="number" required min="1" th:name="idCiudadano" class="form-control" disabled
+                    th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
+                                                                          th:if="${#fields.hasErrors('idCiudadano')}" th:errors="*{idCiudadano}"></small>
+          </div>
+          <div th:if="${cedula} == null ">
+            <input type="number" required min="1" th:name="idCiudadano" class="form-control"
+                   th:errorclass="'form-control alert-danger'" /> <small class="form-text text-danger"
+                                                                         th:if="${#fields.hasErrors('idCiudadano')}" th:errors="*{idCiudadano}"></small>
+          </div>
         </div>
       </div>
 
@@ -92,7 +100,14 @@
 
       <div class="form-group row">
         <div class="col-sm-6">
-          <input type="submit" value="Enviar respuestas" class="btn btn-primary" />
+
+          <div th:if="${cedula} == null ">
+            <input type="submit" value="Enviar respuestas" class="btn btn-primary" />
+          </div>
+          <div th:if="${cedula} != null ">
+            <input type="submit" value="Siguiente" class="btn btn-primary" />
+          </div>
+
         </div>
       </div>
 
