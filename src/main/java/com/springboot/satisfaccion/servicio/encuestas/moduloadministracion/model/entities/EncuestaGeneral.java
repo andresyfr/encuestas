@@ -9,6 +9,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 public class EncuestaGeneral
 {
+    private String name;
     @Id
     private long idCiudadano;
 

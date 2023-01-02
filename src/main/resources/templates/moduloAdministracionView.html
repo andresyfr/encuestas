@@ -28,6 +28,7 @@
   <table class="table table-dark">
     <thead class="table-header">
     <tr>
+        <th scope="col">Modulo</th>
       <th scope="col">Codigo Ciudadano</th>
       <th scope="col">Pregunta</th>
       <th scope="col">Respuesta</th>
@@ -36,6 +37,7 @@
     </thead>
     <tbody>
     <tr th:each="encuesta : ${listadoAnio}">
+        <td th:text="${encuesta.name}"></td>
       <td th:text="${encuesta.idCiudadano}"></td>
       <td th:text="${encuesta.pregunta}"></td>
       <td th:text="${encuesta.respuesta}"></td>
