@@ -27,7 +27,7 @@ public interface EncuestaGeneralService
 
     Map<Integer,List<EncuestaGeneral>> agruparEncuestasSemestre(List<EncuestaGeneral> totalRespuestasObj);
 
-    Map<String,List<Integer>> agruparRespuestas(List<EncuestaGeneral> totalRespuestasObj);
+    Map<String, List<Integer>> agruparRespuestas(List<EncuestaGeneral> totalRespuestasObj);
 
     Map<String,Double> obtenerPromedio(Map<String,List<Integer>> respuestasAgrupadas);
 

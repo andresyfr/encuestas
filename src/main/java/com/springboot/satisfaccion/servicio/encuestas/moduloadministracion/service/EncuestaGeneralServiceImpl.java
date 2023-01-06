@@ -151,7 +151,7 @@ public class EncuestaGeneralServiceImpl implements EncuestaGeneralService
     }
 
     @Override
-    public Map<String,List<Integer>> agruparRespuestas(List<EncuestaGeneral> totalRespuestasObj)
+    public Map<String, List<Integer>> agruparRespuestas(List<EncuestaGeneral> totalRespuestasObj)
     {
         HashMap<String, List<Integer>> agrupacionRespuestasTotales = new HashMap<>();
         if(totalRespuestasObj != null)
@@ -162,8 +162,7 @@ public class EncuestaGeneralServiceImpl implements EncuestaGeneralService
                 {
                     List<Integer> respuestas = new ArrayList<>();
                     respuestas.add(totalRespuestasList.getRespuesta());
-
-                    agrupacionRespuestasTotales.put(totalRespuestasList.getPregunta(), respuestas);
+                    agrupacionRespuestasTotales.put(obtenerModuloPregunta(totalRespuestasList.getPregunta()), respuestas);
                 }
                 else
                 {
@@ -172,6 +171,44 @@ public class EncuestaGeneralServiceImpl implements EncuestaGeneralService
             }
         }
         return agrupacionRespuestasTotales;
+    }
+
+    public String obtenerModuloPregunta(String pregunta){
+        String preguntaModulo = "";
+        String[][] listPreguntasModulo = {
+                {"Expectativa", "1. ¿Cómo califica la calidad de la prestación del servicio ofrecido por la entidad, cumplió sus expectativas?"},
+                {"Expectativa", "2. ¿Recomendaría la entidad por el servicio prestado?"},
+                {"Desempeño", "1. ¿Cómo califica la cantidad de tiempo que le tomó colocar su petición, queja, reclamo o sugerencia?"},
+                {"Desempeño", "2. ¿Cómo califica los siguientes aspectos de la entidad? \n" +
+                        "A. Rapidez y sencillez en la atención y en el acceso a los servicios"},
+                {"Desempeño", "2. ¿Cómo califica los siguientes aspectos de la entidad? \n" +
+                        "B. Respeto por el turno de atención y por el cumplimiento de los horarios de atención."},
+                {"Canales", "1. ¿Identificó claramente a qué oficina o ventanilla dirigirse para realizar su trámite? "},
+                {"Canales", "2. ¿Cómo califica la comodidad limpieza y orden de las instalaciones? "},
+                {"Talento", "1. ¿Cómo califica los siguientes aspectos del servidor que lo atendió́? \n"
+                        + "A. Presentación personal."},
+                {"Talento", "1. ¿Cómo califica los siguientes aspectos del servidor que lo atendió́? \n"
+                        + "B. Actitud y amabilidad."},
+                {"Talento", "1. ¿Cómo califica los siguientes aspectos del servidor que lo atendió́? \n"
+                        + "C. Claridad, calidad y conocimiento de la asesoría recibida."},
+                {"Resultado", "1. ¿La entidad le dió respuesta efectiva y oportuna a su requerimiento?"},
+                {"Resultado", "2. ¿La entidad cumplió́ con los acuerdos, tiempos o compromisos establecidos?"}
+        };
+
+
+        for (int i = 0; i < listPreguntasModulo.length; i++) {
+
+            /*
+             * En posicion [i][0] tenemos los modulos
+             * En posicion [i][1] tenemos las preguntas de los modulos
+             */
+            if (listPreguntasModulo[i][1].equalsIgnoreCase(pregunta)) {
+                return String.format("Modulo: %s, %s", listPreguntasModulo[i][0].toString() , pregunta.toString());
+            }
+
+        }
+
+        return preguntaModulo;
     }
 
     @Override
