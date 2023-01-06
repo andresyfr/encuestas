@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -24,7 +22,7 @@ public class EncuestaModuloCanalesAtencionController {
 
     private static final String pregunta1Valor = "1. ¿Identificó claramente a qué oficina o ventanilla dirigirse para realizar su trámite? ";
     private static final String pregunta2Valor = "2. ¿Cómo califica la comodidad limpieza y orden de las instalaciones? ";
-    private static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+    private static final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 
     @Autowired
     private EncuestaModuloCanalesAtencionService encuestaModuloCanalesAtencionService;
@@ -40,8 +38,20 @@ public class EncuestaModuloCanalesAtencionController {
         return "moduloCanalesAtencionView";
     }
 
-    @PostMapping(value = "/save")
-    public String save(@Valid EncuestaModuloCanalesAtencion encuestaModuloCanalesAtencion, BindingResult result, Model model, RedirectAttributes flash)
+    @GetMapping(value = "/index/{cedula}")
+    public String indexModuloCanalesAtencion(@PathVariable String cedula, Map<String, Object> model)
+    {
+        EncuestaModuloCanalesAtencion encuestaModuloCanalesAtencion = new EncuestaModuloCanalesAtencion();
+        model.put("title", "Módulo Canales Atención");
+        model.put("encuestaCanalesAtencion", encuestaModuloCanalesAtencion);
+        model.put("pregunta1Valor", pregunta1Valor);
+        model.put("pregunta2Valor", pregunta2Valor);
+        model.put("cedula", cedula);
+        return "moduloCanalesAtencionView";
+    }
+
+    @PostMapping(value = "/save/{cedula}")
+    public String save(@Valid EncuestaModuloCanalesAtencion encuestaModuloCanalesAtencion, BindingResult result, Model model, RedirectAttributes flash, @PathVariable String cedula)
     {
         if (result.hasErrors())
         {
@@ -53,10 +63,15 @@ public class EncuestaModuloCanalesAtencionController {
         encuestaModuloCanalesAtencion.setPregunta1(pregunta1Valor);
         encuestaModuloCanalesAtencion.setPregunta2(pregunta2Valor);
         encuestaModuloCanalesAtencion.setFechaDiligenciada(dateFormat.format(new Date()));
+        if(!(cedula.isEmpty() || cedula.equals("null"))){encuestaModuloCanalesAtencion.setIdCiudadano(Long.parseLong(cedula));}
         encuestaModuloCanalesAtencionService.save(encuestaModuloCanalesAtencion);
         flash.addFlashAttribute("success",flashMessage);
 
-        return "redirect:/api/satisfaccionservicio/encuestas/modulocanalesatencion/index";
+        if(cedula.isEmpty() || cedula.equals("null"))
+        {
+            return "redirect:/api/satisfaccionservicio/encuestas/modulocanalesatencion/index";
+        }
+        return "redirect:/api/satisfaccionservicio/encuestas/modulotalentohumano/index/"+cedula;
     }
 
     @GetMapping(value = "/all")
