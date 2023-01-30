@@ -52,6 +52,8 @@ Para ejecutar las pruebas unitarias:
 
 ## Seguridad
 
+## Iniciar los servicios backend y frontend del aplicativo monolìtico
+mvn spring-boot:run
 ---
 
 ## Autores
